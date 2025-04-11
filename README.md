@@ -17,8 +17,8 @@ Follow these steps to run the project on your local machine:
 ### 2. 📂 Navigate to the Project Folder
 Open a terminal (Command Prompt, PowerShell, or Terminal) and run:
 
-```bash
-cd whbs_project
+
+
 
 🧠 Open in Your Preferred IDE
 You can open the folder in any IDE you like.
