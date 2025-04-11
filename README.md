@@ -19,7 +19,7 @@ Open a terminal (Command Prompt, PowerShell, or Terminal) and run:
 
 
 
-
+cd \wedding-halls-booking-system-python-with-Django-main\wedding-halls-booking-system-python-with-Django-main
 🧠 Open in Your Preferred IDE
 You can open the folder in any IDE you like.
 Example (for VS Code users):
@@ -29,16 +29,18 @@ Make sure you have Python and pip installed.
 
 Install all required packages using:
 
-pip install -r requirements.txt
+* pip install -r requirements.txt
 
 🔨 Apply Migrations
 Run the following commands:
 
-python manage.py makemigrations
-python manage.py migrate
+* python manage.py makemigrations 
+  
+  
+* python manage.py migrate
 
 🚀 Start the Development Server
-python manage.py runserver
+ *  python manage.py runserver
 
 Open your browser and visit:
 http://127.0.0.1:8000
