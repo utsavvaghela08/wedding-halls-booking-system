@@ -20,6 +20,8 @@ Open a terminal (Command Prompt, PowerShell, or Terminal) and run:
 
 
 cd \wedding-halls-booking-system-python-with-Django-main\wedding-halls-booking-system-python-with-Django-main
+
+
 🧠 Open in Your Preferred IDE
 You can open the folder in any IDE you like.
 Example (for VS Code users):
