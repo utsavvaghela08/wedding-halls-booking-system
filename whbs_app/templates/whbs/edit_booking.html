@@ -1,0 +1,101 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Meta tags for character encoding and viewport settings -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Title of the webpage -->
+    <title>WHBS</title>
+    
+    <!-- Bootstrap CSS from CDN for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Custom CSS loaded via Django static files -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    
+    <style>
+        /* Custom background gradient for body */
+        body {
+            background: radial-gradient(circle, rgba(255,0,125,1) 0%, rgba(255,123,0,1) 49%, rgba(248,0,255,1) 100%);
+        }
+
+        /* Custom container background color */
+        .container {
+            background-color: #ff4d88;
+        }
+
+        /* Styling for the title */
+        .title {
+            width: 100%;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- Main container for the content -->
+    <div class="container">
+      <!-- Card element wrapping the form -->
+      <div class="card w-100">   
+      
+        <!-- Form to collect booking details -->
+        <form method="post">
+          {% csrf_token %}
+          
+          <!-- Heading for the booking form -->
+          <h2 class="title">Booking for {{ hall.title }}</h2>
+          
+          <!-- Guest count input field -->
+          <label style="color: #ff4d88;">Guest Count:</label>
+          <input type="number" name="guest_count" required value="{{obj.guest_count}}">
+          
+          <!-- Booking date input field -->
+          <h3 style="color: #ff4d88;">Select a Hall Booking Date</h3>
+          <input type="date" id="dateInput" name="date" value="{{obj.booking_date}}" required>
+          
+          <!-- Address input field -->
+          <label style="color: #ff4d88;">Address:</label>
+          <textarea name="address" value="{{obj.address}}" required></textarea>
+          
+          <!-- Submit button wrapped in a center tag -->
+          <center>
+            <button type="submit" class="btn btn-outline-danger">Submit</button>
+          </center>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- JavaScript to handle date input constraints -->
+    <script>
+        // Get today's date in YYYY-MM-DD format
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const formattedToday = `${year}-${month}-${day}`;
+
+        // Set the expiry date (e.g., 30 days from today)
+        const expiryDate = new Date();
+        expiryDate.setDate(expiryDate.getDate() + 30); // Adjust the number of days as needed
+        const expiryYear = expiryDate.getFullYear();
+        const expiryMonth = String(expiryDate.getMonth() + 1).padStart(2, '0');
+        const expiryDay = String(expiryDate.getDate()).padStart(2, '0');
+        const formattedExpiry = `${expiryYear}-${expiryMonth}-${expiryDay}`;
+
+        // Set min and max attributes for the date input element
+        const dateInput = document.getElementById('dateInput');
+        dateInput.setAttribute('min', formattedToday);
+        dateInput.setAttribute('max', formattedExpiry);
+    </script>
+
+    <!-- Bootstrap JavaScript dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <!-- Custom JavaScript file -->
+    <script src="js/main.js"></script>
+
+  </body>
+</html>

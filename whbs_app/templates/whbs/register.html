@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tag for character encoding, setting the document to UTF-8 for proper rendering of text -->
+    <meta charset="UTF-8">
+    
+    <!-- Meta tag for viewport settings to ensure responsive design across devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title of the webpage displayed in the browser tab -->
+    <title>Register</title>
+    
+    <!-- Link to the custom CSS file for styling the registration page -->
+    <link rel="stylesheet" href="{% static 'css/log_reg.css' %}">
+</head>
+<body>
+    <!-- Main container for the registration form styled as a card -->
+    <div class="container card">
+        <!-- Form container where the form elements are placed -->
+        <div class="form-container">
+            
+            <!-- Heading for the registration form -->
+            <h2>Register</h2>
+            
+            <!-- Form to collect user registration details -->
+            <form method="post">
+                
+                <!-- CSRF token for security to prevent cross-site request forgery -->
+                {% csrf_token %}
+                
+                <!-- Input field for username -->
+                <input type="text" name="name" placeholder="Username" required>
+                
+                <!-- Input field for email, ensuring the value is a valid email format -->
+                <input type="email" name="email" placeholder="Email" required>
+                
+                <!-- Input field for phone number -->
+                <input type="number" name="number" placeholder="Phone Number" required>
+                
+                <!-- Input field for password -->
+                <input type="password" name="password" placeholder="Password" required>
+                
+                <!-- Input field for confirming the password -->
+                <input type="password" name="password2" placeholder="Confirm Password" required>
+                
+                <!-- Textarea for user to enter their address -->
+                <textarea name="address" style="width:100%;" required placeholder="Address : "></textarea>
+
+                <!-- Radio buttons for selecting gender -->
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <!-- Radio button for male gender selection -->
+                        <input type="radio" name="gender" value="Male" id="male">
+                        <span class="custom-radio"></span>
+                        Male
+                    </label>
+                    <label class="radio-option">
+                        <!-- Radio button for female gender selection -->
+                        <input type="radio" name="gender" value="Female" id="female">
+                        <span class="custom-radio"></span>
+                        Female
+                    </label>
+                </div>
+
+                <!-- Submit button to register the user -->
+                <button type="submit">Register</button>
+
+                <!-- Link for users who already have an account, redirecting them to the login page -->
+                <p class="redirect">Already have an account? <a href="{% url 'login'%}">Login</a></p>
+
+               {% if messages %}
+                <dvi >
+                    {% for massage in messages%}
+                        <h4 style="color: #ff4d4d;
+  background-color: #ffa0a0;
+  padding: 10px;
+  border-radius: 5px;">{{massage}}</h4>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                
+            </form>
+        </div>
+    </div>
+</body>
+</html>

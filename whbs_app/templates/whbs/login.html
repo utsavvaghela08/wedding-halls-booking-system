@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tag for character encoding -->
+    <meta charset="UTF-8">
+    
+    <!-- Meta tag for viewport settings to ensure proper rendering on different devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title of the webpage, shown in the browser tab -->
+    <title>Login</title>
+    
+    <!-- Link to the custom CSS file for styling the login page -->
+    <link rel="stylesheet" href="{% static 'css/log_reg.css' %}">
+</head>
+<body>
+    <!-- Main container for the login form, styled as a card -->
+    <div class="container card">
+        <div class="form-container">
+            <!-- Heading of the form -->
+            <h2>Login</h2>
+            
+            <!-- Login form -->
+            <form method="post">
+                <!-- CSRF token for security to prevent cross-site request forgery -->
+                {% csrf_token %}
+                
+                <!-- Input field for username -->
+                <input type="text" name="name" placeholder="Username" required>
+                
+                <!-- Input field for password, masked with stars -->
+                <input type="password" name="password" placeholder="Password" required>
+                
+                <!-- Submit button to submit the form -->
+                <button type="submit">Login</button>
+                
+                <!-- Redirect link for users who don't have an account, leading to the registration page -->
+                <p class="redirect">Don't have an account? <a href="{% url 'register'%}">Register</a></p>
+
+                {% if messages %}
+                <dvi >
+                    {% for massage in messages%}
+                        <h4 style="color: #ff4d4d;
+  background-color: #ffa0a0;
+  padding: 10px;
+  border-radius: 5px;">{{massage}}</h4>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</body>
+</html>
